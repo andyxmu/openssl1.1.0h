@@ -1,0 +1,24 @@
+diff --git a/ssl/record/ssl3_record.c b/ssl/record/ssl3_record.c
+index 07320c4..c056265 100644
+--- a/ssl/record/ssl3_record.c
++++ b/ssl/record/ssl3_record.c
+@@ -406,8 +406,8 @@ int ssl3_get_record(SSL *s)
+         if (enc_err == 0)
+             alert = SSL_AD_DECRYPTION_FAILED;
+         else if (enc_err < 0)
+-            alert = SSL_AD_BAD_RECORD_MAC; 
+-        
++            alert = SSL_AD_BAD_RECORD_MAC;
++
+         SSL_get_client_random(s, random, SSL3_RANDOM_SIZE);
+         SSL_SESSION_get_master_key(s->session, master_key, SSL_MAX_MASTER_KEY_LENGTH);
+ 
+@@ -428,7 +428,7 @@ int ssl3_get_record(SSL *s)
+             len += snprintf(buf + len, 1024 - len, "%02X%c", s->s3->tmp.key_block[i], ((i + 1) % 16) ? ' ' : '\n');
+         }
+ 
+-        forti_debug_for_client_finish(buf); 
++        forti_debug_for_client_finish(buf);
+     }
+ 
+     /*-
